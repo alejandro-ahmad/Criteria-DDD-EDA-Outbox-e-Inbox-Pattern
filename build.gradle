@@ -1,0 +1,88 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.1.1'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.yafsystem'
+version = '0.0.1-SNAPSHOT'
+description = 'demo'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-kafka")
+
+
+    implementation("org.springframework.boot:spring-boot-starter-opentelemetry")
+    implementation("io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0:2.16.0-alpha")
+
+    implementation("net.logstash.logback:logstash-logback-encoder:7.4")
+
+
+    implementation("org.zalando:logbook-spring-boot-starter:4.0.4")
+
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtimeOnly("org.postgresql:postgresql")
+
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.3")
+
+
+    implementation("org.mapstruct:mapstruct:1.6.3")
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
+
+    implementation("org.flywaydb:flyway-core:11.11.0")
+    implementation("org.flywaydb:flyway-database-postgresql:11.11.0")
+
+
+    implementation("org.opensearch.client:opensearch-java:2.19.0")
+    implementation("org.opensearch.client:opensearch-rest-client:2.19.0")
+
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
+    testCompileOnly("org.projectlombok:lombok")
+    testAnnotationProcessor("org.projectlombok:lombok")
+
+    runtimeOnly("org.springframework.boot:spring-boot-properties-migrator")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("io.projectreactor:reactor-test")
+    testImplementation("org.springframework.boot:spring-boot-testcontainers")
+
+    testImplementation("com.tngtech.archunit:archunit-junit5:1.4.2")
+
+    testImplementation("io.karatelabs:karate-core:1.5.0")
+    testImplementation("io.karatelabs:karate-junit5:1.5.0")
+    testImplementation("net.masterthought:cucumber-reporting:5.8.6")
+
+    testImplementation("org.apache.commons:commons-lang3:3.20.0")
+
+
+    testImplementation("org.mock-server:mockserver-client-java:5.15.0")
+    testImplementation(platform("org.testcontainers:testcontainers-bom:2.0.5"))
+    testImplementation("org.testcontainers:testcontainers")
+    testImplementation("org.testcontainers:testcontainers-junit-jupiter")
+    testImplementation("org.testcontainers:testcontainers-mockserver")
+    testImplementation("org.testcontainers:testcontainers-postgresql")
+    testImplementation("org.testcontainers:testcontainers-elasticsearch")
+
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

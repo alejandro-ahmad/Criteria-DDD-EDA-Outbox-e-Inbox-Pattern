@@ -1,0 +1,60 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/monoandflux_db
+    username: monoandflux
+    password: monoandflux123
+    driver-class-name: org.postgresql.Driver
+    type: "com.zaxxer.hikari.HikariDataSource"
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+  application:
+    name: demo
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    date-format: yyyy-MM-dd
+
+version:
+  api-springboot: 1.1.0
+  app: 0.0.1-SNAPSHOT
+
+documentation:
+  openapi:
+    info:
+      prefix: ${API_PREFIX:MS-API-SPRINGBOOT}
+      title: ASISweb
+      description: Documentación de CRITERIA DDD
+      version: 0.0.1-SNAPSHOT
+      contact:
+        name: Dirección de Sistemas - PJT
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+logbook:
+  include:
+    - /**
+  format:
+    style: json
+
+logging:
+  level:
+    org.zalando.logbook: TRACE
